@@ -22,9 +22,7 @@ public class BackwardChaining {
         ksession.insert(new Fact("Asia", "Planet Earth"));
         ksession.insert(new Fact("China", "Asia"));
         ksession.insert(new Fact("Great Wall of China", "China"));
-
         ksession.fireAllRules();
-
         return result;
     }
 }

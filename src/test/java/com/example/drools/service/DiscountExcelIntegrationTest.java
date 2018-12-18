@@ -26,20 +26,15 @@ public class DiscountExcelIntegrationTest {
     public void giveIndvidualLongStanding_whenFireRule_thenCorrectDiscount() throws Exception {
         Customer customer = new Customer(CustomerType.INDIVIDUAL, 5);
         kSession.insert(customer);
-
         kSession.fireAllRules();
-
         assertEquals(customer.getDiscount(), 15);
     }
 
     @Test
     public void giveIndvidualRecent_whenFireRule_thenCorrectDiscount() throws Exception {
-
         Customer customer = new Customer(CustomerType.INDIVIDUAL, 1);
         kSession.insert(customer);
-
         kSession.fireAllRules();
-
         assertEquals(customer.getDiscount(), 5);
     }
 
@@ -47,9 +42,7 @@ public class DiscountExcelIntegrationTest {
     public void giveBusinessAny_whenFireRule_thenCorrectDiscount() throws Exception {
         Customer customer = new Customer(CustomerType.BUSINESS, 0);
         kSession.insert(customer);
-
         kSession.fireAllRules();
-
         assertEquals(customer.getDiscount(), 20);
     }
 

@@ -13,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 public class BackwardChainingIntegrationTest {
     private Result result;
     private KieSession ksession;
- 
+
     @Before
     public void before() {
         result = new Result();
@@ -22,14 +22,11 @@ public class BackwardChainingIntegrationTest {
 
     @Test
     public void whenWallOfChinaIsGiven_ThenItBelongsToPlanetEarth() {
-
         ksession.setGlobal("result", result);
         ksession.insert(new Fact("Asia", "Planet Earth"));
         ksession.insert(new Fact("China", "Asia"));
         ksession.insert(new Fact("Great Wall of China", "China"));
-
         ksession.fireAllRules();
-        
         // Assert Decision one
         assertEquals(result.getValue(), "Decision one taken: Great Wall of China BELONGS TO Planet Earth");
     }

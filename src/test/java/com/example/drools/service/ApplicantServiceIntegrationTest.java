@@ -10,9 +10,7 @@ import java.io.IOException;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.TestCase.assertEquals;
 
-
 public class ApplicantServiceIntegrationTest {
-
 
     private ApplicantService applicantService;
 

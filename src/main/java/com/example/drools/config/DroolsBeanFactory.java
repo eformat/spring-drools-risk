@@ -31,20 +31,15 @@ public class DroolsBeanFactory {
             kieFileSystem.write(ResourceFactory.newClassPathResource(rule));
         }
         return kieFileSystem;
-
     }
 
     public KieContainer getKieContainer() throws IOException {
         getKieRepository();
-
         KieBuilder kb = kieServices.newKieBuilder(getKieFileSystem());
         kb.buildAll();
-
         KieModule kieModule = kb.getKieModule();
         KieContainer kContainer = kieServices.newKieContainer(kieModule.getReleaseId());
-
         return kContainer;
-
     }
 
     private void getKieRepository() {
@@ -64,32 +59,22 @@ public class DroolsBeanFactory {
         kieFileSystem.write(ResourceFactory.newClassPathResource("com/example/drools/rules/SuggestApplicant.drl"));
         kieFileSystem.write(ResourceFactory.newClassPathResource("com/example/drools/rules/Product_rules.xls"));
 
-
         KieBuilder kb = kieServices.newKieBuilder(kieFileSystem);
         kb.buildAll();
         KieModule kieModule = kb.getKieModule();
-
         KieContainer kContainer = kieServices.newKieContainer(kieModule.getReleaseId());
-
         return kContainer.newKieSession();
-
     }
 
     public KieSession getKieSession(Resource dt) {
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem()
                 .write(dt);
-
         KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem)
                 .buildAll();
-
         KieRepository kieRepository = kieServices.getRepository();
-
         ReleaseId krDefaultReleaseId = kieRepository.getDefaultReleaseId();
-
         KieContainer kieContainer = kieServices.newKieContainer(krDefaultReleaseId);
-
         KieSession ksession = kieContainer.newKieSession();
-
         return ksession;
     }
 
@@ -100,13 +85,9 @@ public class DroolsBeanFactory {
     public String getDrlFromExcel(String excelFile) {
         DecisionTableConfiguration configuration = KnowledgeBuilderFactory.newDecisionTableConfiguration();
         configuration.setInputType(DecisionTableInputType.XLS);
-
         Resource dt = ResourceFactory.newClassPathResource(excelFile, getClass());
-
         DecisionTableProviderImpl decisionTableProvider = new DecisionTableProviderImpl();
-
         String drl = decisionTableProvider.loadFromResource(dt, null);
-
         return drl;
     }
 

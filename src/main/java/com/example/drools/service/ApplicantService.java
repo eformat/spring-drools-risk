@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ApplicantService {
 
-    KieSession kieSession=new DroolsBeanFactory().getKieSession();
+    KieSession kieSession = new DroolsBeanFactory().getKieSession();
 
     public SuggestedRole suggestARoleForApplicant(Applicant applicant,SuggestedRole suggestedRole) throws IOException {
         kieSession.insert(applicant);
@@ -18,6 +18,5 @@ public class ApplicantService {
         kieSession.fireAllRules();
         System.out.println(suggestedRole.getRole());
         return  suggestedRole;
-
     }
 }

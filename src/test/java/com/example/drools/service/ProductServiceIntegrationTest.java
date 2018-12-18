@@ -16,7 +16,6 @@ public class ProductServiceIntegrationTest {
         productService = new ProductService();
     }
 
-
     @Test
     public void whenProductTypeElectronic_ThenLabelBarcode() {
         Product product = new Product("Microwave", "Electronic");
